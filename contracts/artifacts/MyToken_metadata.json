@@ -380,19 +380,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "getTokenId",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -980,18 +967,19 @@
 			]
 		},
 		"contracts/IExerciceSolution.sol": {
-			"keccak256": "0xe3911eecbebf1bfa8943d658c4f652911a04f719e6dce69f1b943a3580e789a3",
+			"keccak256": "0xea148b925b53f64f0d69453ff20f681144a72bb9044b6997576cf85004d1f8f7",
+			"license": "MIT",
 			"urls": [
-				"bzz-raw://1358f91eac397754f2493ec1d4b6ff3c4e179d555cc556900dd5154fa255d51d",
-				"dweb:/ipfs/QmbRFzh1zUGTzRDbYYf1zjBVybN9eTnSK8MzqHPueyWRE7"
+				"bzz-raw://f623e9fb06965f82fbd7774da7b33ad4e7dd73b96cf1296f2d022b608989b6ac",
+				"dweb:/ipfs/QmQC8F2tLJFXAV8UWENNM6xEiJ43kJVEiK1DicAEU2vB1H"
 			]
 		},
 		"contracts/my_ecr721.sol": {
-			"keccak256": "0xf6d1d61a909d6b1c80f0d777b0f3a0ed1d223ebed2866baf86e033434502f29f",
+			"keccak256": "0x6354f196d6bab5215a3240d207d980fe5b10e3843572ebcbf93b8be068b7fad3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://5ba7d5b9953ca04adf721ba209817659eb31c917b5e6a243e3c3802a41061734",
-				"dweb:/ipfs/QmYkfGQTbhcFzTvayE4Vj82KYDmXBMrMHvykNAKJUDxPqC"
+				"bzz-raw://d27a0e785fbba72c9f91167cb33f059cda8b7495d2d6c059407d37ba1a2702ec",
+				"dweb:/ipfs/QmNckPdpVkMkZ1hRLbFRBP89RRcE4qxVueruhAKgezkau7"
 			]
 		}
 	},

@@ -6,15 +6,20 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "./IExerciceSolution.sol";
 
-contract MyToken is ERC721, Ownable, IExerciceSolution {
+contract Blabla721 is ERC721, Ownable, IExerciceSolution {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
+    mapping(uint256 => Metadatas) private metadatas;
+    struct Metadatas {
+		uint sex;
+        uint legs;
+        bool wings;
+        string name;
+    }
 
-    constructor() ERC721("blabla_721", "BLABLA") {}
-
-    function getTokenId() public view returns (uint256) {
-        return _tokenIdCounter.current();
+    constructor() ERC721("blabla_721", "BLABLA") {
+        _tokenIdCounter.increment();
     }
 
     function safeMint(address to) public onlyOwner {
@@ -40,12 +45,13 @@ contract MyToken is ERC721, Ownable, IExerciceSolution {
 
 	function registerMeAsBreeder() external payable {}
 
-	function declareAnimal(uint sex, uint legs, bool wings, string calldata name) external returns (uint256) {
-        return 0;
+	function declareAnimal(uint sex, uint legs, bool wings, string calldata name) external onlyOwner returns (uint256) {
+        metadatas[_tokenIdCounter.current()] = Metadatas(sex, legs, wings, name);
+        return _tokenIdCounter.current();
     }
 
-	function getAnimalCharacteristics(uint animalNumber) external returns (string memory _name, bool _wings, uint _legs, uint _sex) {
-        return ("", false, 0, 0);
+	function getAnimalCharacteristics(uint animalNumber) external view returns (string memory _name, bool _wings, uint _legs, uint _sex) {
+        return (metadatas[animalNumber].name, metadatas[animalNumber].wings, metadatas[animalNumber].legs, metadatas[animalNumber].sex);
     }
 
 	function declareDeadAnimal(uint animalNumber) external {}
