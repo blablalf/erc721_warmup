@@ -476,10 +476,10 @@
 			]
 		},
 		"contracts/IExerciceSolution.sol": {
-			"keccak256": "0x5724ed9db2c540a062e0a555f5cfa2fbdd034a0a7ec8e51c9f4d712ea275b775",
+			"keccak256": "0xe3911eecbebf1bfa8943d658c4f652911a04f719e6dce69f1b943a3580e789a3",
 			"urls": [
-				"bzz-raw://a3346239da92be12dc16c038539f4d5c5224ecf682ddbdf0ecfb3b8be9d5255a",
-				"dweb:/ipfs/QmSvw6PL5vBVEHm3Hvz4T34LSdxaQQrQHpQJNuTGGneGGr"
+				"bzz-raw://1358f91eac397754f2493ec1d4b6ff3c4e179d555cc556900dd5154fa255d51d",
+				"dweb:/ipfs/QmbRFzh1zUGTzRDbYYf1zjBVybN9eTnSK8MzqHPueyWRE7"
 			]
 		}
 	},
