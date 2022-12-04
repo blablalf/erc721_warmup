@@ -36,6 +36,9 @@ contract MyContract {
 
         // Ex4
         evaluator.ex4_testDeclareAnimal();
+
+        // Ex5
+        evaluator.ex5_declareDeadAnimal();
     }
 
     function onERC721Received(address _operator, address _from, uint256 _tokenId, bytes memory _data) external pure returns(bytes4 value) {

@@ -444,6 +444,40 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "metadatas",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "sex",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "legs",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "wings",
+						"type": "bool"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "to",
 						"type": "address"
@@ -982,11 +1016,11 @@
 			]
 		},
 		"contracts/my_ecr721.sol": {
-			"keccak256": "0xf2bd961b302b15f45607d629ddd20a5685e6d6c8a2abd8540ea894168228625b",
+			"keccak256": "0x1dd391276036825750403ba505e711306dd82ba5846a1c617b55b8461f097076",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://476ea537d405fed7bf302d0a49486a604f745a0ce9585491cf8d3cb4fdfbd753",
-				"dweb:/ipfs/Qmdn4NBw5BGEfuyTtcshpAemqBXbzs3bshBZHLa9yFNBia"
+				"bzz-raw://73ab606f2701e3a2155055e64e99e1de63b949b9f38bcd218d8e8e00533029de",
+				"dweb:/ipfs/QmVkvqUCue2qTuYSDGzqhZpcjp8BYYt11rNTMAePoatDVZ"
 			]
 		}
 	},

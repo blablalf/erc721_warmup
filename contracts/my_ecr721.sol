@@ -2,6 +2,7 @@
 pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+//import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "./IExerciceSolution.sol";
@@ -11,7 +12,8 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
 
     Counters.Counter private _tokenIdCounter;
 
-    mapping(uint256 => Metadatas) private metadatas;
+    mapping(uint256 => Metadatas) public metadatas;
+    //mapping(uint256 => bool) public isDead;
 
     // Breeders
     bool breedersEnabled;
@@ -25,20 +27,16 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
         string name;
     }
 
-    constructor() ERC721("blabla_721", "BLABLA") {
-        _tokenIdCounter.increment();
-    }
+    constructor() ERC721("blabla_721", "BLABLA") {}
 
     function safeMint(address to) public onlyOwner {
-        uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
-        _safeMint(to, tokenId);
+        _safeMint(to, _tokenIdCounter.current());
     }
 
     function mint(address to) public onlyOwner {
-        uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
-        _mint(to, tokenId);
+        _mint(to, _tokenIdCounter.current());
     }
 
     function toggleBreeders() public onlyOwner {
@@ -61,20 +59,37 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
 
 	function declareAnimal(uint sex, uint legs, bool wings, string calldata name) external returns (uint256) {
         if (breedersEnabled) require(breeders[msg.sender], "Not registred as breeder.");
+        _tokenIdCounter.increment();
         metadatas[_tokenIdCounter.current()] = Metadatas(sex, legs, wings, name);
         _mint(msg.sender, _tokenIdCounter.current());
-        _tokenIdCounter.increment();
-        return _tokenIdCounter.current()-1;
+        return _tokenIdCounter.current();
     }
 
 	function getAnimalCharacteristics(uint animalNumber) external view returns (string memory _name, bool _wings, uint _legs, uint _sex) {
         return (metadatas[animalNumber].name, metadatas[animalNumber].wings, metadatas[animalNumber].legs, metadatas[animalNumber].sex);
     }
 
-	function declareDeadAnimal(uint animalNumber) external {}
+	function declareDeadAnimal(uint animalNumber) external {
+        require(msg.sender == ownerOf(animalNumber), "Only owner of the token can do that");
+        require(breeders[msg.sender], "Not registred as breeder.");
+        metadatas[animalNumber] = Metadatas(0, 0, false, "");
+        _burn(animalNumber);
+        //transferFrom(msg.sender, address(this), animalNumber);
+
+        //isDead[animalNumber] = true;
+    }
 
 	function tokenOfOwnerByIndex(address owner, uint256 index) external view returns (uint256) {
-        return 0;
+        require(balanceOf(owner) > 0, "Owner do not have any token");
+        uint ownerBalance = balanceOf(owner);
+        uint elementAdded;
+
+        for (uint i = 1; i <= _tokenIdCounter.current() || elementAdded != ownerBalance; i++) 
+            if (ownerOf(i) == owner && elementAdded == index) return i;
+            else if (ownerOf(i) == owner) elementAdded++;
+
+        return 0; // Never happens
+        
     }
 
 	// Selling functions
