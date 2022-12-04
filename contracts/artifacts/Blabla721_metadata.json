@@ -126,6 +126,25 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "animalSalePrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "to",
 						"type": "address"
@@ -431,6 +450,25 @@
 					}
 				],
 				"name": "isBreeder",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "isForSale",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -1016,11 +1054,11 @@
 			]
 		},
 		"contracts/my_ecr721.sol": {
-			"keccak256": "0x1dd391276036825750403ba505e711306dd82ba5846a1c617b55b8461f097076",
+			"keccak256": "0x1b3a83b437d6c6956b029523b88e96a1c8b05645d98bfb2d79884d8cb3a01a98",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://73ab606f2701e3a2155055e64e99e1de63b949b9f38bcd218d8e8e00533029de",
-				"dweb:/ipfs/QmVkvqUCue2qTuYSDGzqhZpcjp8BYYt11rNTMAePoatDVZ"
+				"bzz-raw://bfce36a8b56a0422a28de799642c4a4d9af38d7b5a98378315384a1947cb3495",
+				"dweb:/ipfs/QmcwaUDDnC3x9mincMXgGywg2uTR9xrYG8GyDQw1gjtsrm"
 			]
 		}
 	},
