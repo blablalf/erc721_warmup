@@ -101,10 +101,10 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
     }
 
 	function buyAnimal(uint animalNumber) external payable {
-        require(msg.value >= animalSalePrice[animalNumber]);
-        animalSalePrice[animalNumber] = 0;
+        require(isForSale[animalNumber], "Token not for sale.");
+        require(msg.value >= animalSalePrice[animalNumber], "Proposed value lower than price.");
         isForSale[animalNumber] = false;
-        transferFrom(address(this), msg.sender, animalNumber);
+        _transfer(ownerOf(animalNumber), msg.sender, animalNumber);
     }
 
 	function offerForSale(uint animalNumber, uint price) external {
