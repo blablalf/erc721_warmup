@@ -982,11 +982,11 @@
 			]
 		},
 		"contracts/my_ecr721.sol": {
-			"keccak256": "0xa378de7875205a514fcf8b538c3e2f46ec470cd6290ec0047eeca95e7113174b",
+			"keccak256": "0xf2bd961b302b15f45607d629ddd20a5685e6d6c8a2abd8540ea894168228625b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://75ad46567a2fd7417a9f5083dd170dab0219bb6a04492066fd84706c0731ac9e",
-				"dweb:/ipfs/QmQYPzaec2oYGmQEFeKzrmu3JdQTmHJ82zdUkH4Y4zw2U5"
+				"bzz-raw://476ea537d405fed7bf302d0a49486a604f745a0ce9585491cf8d3cb4fdfbd753",
+				"dweb:/ipfs/Qmdn4NBw5BGEfuyTtcshpAemqBXbzs3bshBZHLa9yFNBia"
 			]
 		}
 	},

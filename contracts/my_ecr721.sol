@@ -62,7 +62,8 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
 	function declareAnimal(uint sex, uint legs, bool wings, string calldata name) external returns (uint256) {
         if (breedersEnabled) require(breeders[msg.sender], "Not registred as breeder.");
         metadatas[_tokenIdCounter.current()] = Metadatas(sex, legs, wings, name);
-        mint(msg.sender);
+        _mint(msg.sender, _tokenIdCounter.current());
+        _tokenIdCounter.increment();
         return _tokenIdCounter.current()-1;
     }
 

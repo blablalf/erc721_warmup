@@ -10,9 +10,7 @@ contract MyContract {
     constructor() {
         // Init
         evaluator = Evaluator(payable(0x40aDC5976f6ae451Dbf9a390d31c7ffB5366b229));
-    }
 
-    function allIn() public {
         // Ex1
         Blabla721 my_erc721 = new Blabla721();
         evaluator.submitExercice(my_erc721);
@@ -35,10 +33,14 @@ contract MyContract {
         // Ex3
         my_erc721.toggleBreeders();
         evaluator.ex3_testRegisterBreeder();
+
+        // Ex4
+        evaluator.ex4_testDeclareAnimal();
     }
 
     function onERC721Received(address _operator, address _from, uint256 _tokenId, bytes memory _data) external pure returns(bytes4 value) {
         _operator; _from; _tokenId; _data;
         return 0x150b7a02;
-    } 
+    }
+    
 }
