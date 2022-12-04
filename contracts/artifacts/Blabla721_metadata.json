@@ -438,7 +438,7 @@
 						"type": "bool"
 					}
 				],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -571,7 +571,7 @@
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -712,6 +712,13 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "toggleBreeders",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -975,11 +982,11 @@
 			]
 		},
 		"contracts/my_ecr721.sol": {
-			"keccak256": "0xbcef4f017f2e63354ed684b100ad21029170e90a5093852b52aa38a6a8e424cc",
+			"keccak256": "0xa378de7875205a514fcf8b538c3e2f46ec470cd6290ec0047eeca95e7113174b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a04e8b0bcc2a1d7d615816349a0f66ec243c0fceb699b9327c24068e0ce3b8ff",
-				"dweb:/ipfs/QmZnoiA6bhZdFjHVYqTYqevQ2NsYajNFcrHXmTAfJqErWD"
+				"bzz-raw://75ad46567a2fd7417a9f5083dd170dab0219bb6a04492066fd84706c0731ac9e",
+				"dweb:/ipfs/QmQYPzaec2oYGmQEFeKzrmu3JdQTmHJ82zdUkH4Y4zw2U5"
 			]
 		}
 	},

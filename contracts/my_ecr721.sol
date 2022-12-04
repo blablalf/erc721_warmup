@@ -10,7 +10,14 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
+
     mapping(uint256 => Metadatas) private metadatas;
+
+    // Breeders
+    bool breedersEnabled;
+    mapping(address => bool) private breeders;
+    uint registrationPriceVal;
+
     struct Metadatas {
 		uint sex;
         uint legs;
@@ -34,20 +41,29 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
         _mint(to, tokenId);
     }
 
+    function toggleBreeders() public onlyOwner {
+        breedersEnabled = !breedersEnabled;
+    }
+
     // Breeding function
-	function isBreeder(address account) external returns (bool) {
-        return false;
+	function isBreeder(address account) external view returns (bool) {
+        return breeders[account];
     }
 
-	function registrationPrice() external returns (uint256) {
-        return 0;
+	function registrationPrice() external view returns (uint256) {
+        return registrationPriceVal;
     }
 
-	function registerMeAsBreeder() external payable {}
+	function registerMeAsBreeder() external payable {
+        require(msg.value == registrationPriceVal, "Payed value not equal to registrationPrice value.");
+        breeders[msg.sender] = true;
+    }
 
-	function declareAnimal(uint sex, uint legs, bool wings, string calldata name) external onlyOwner returns (uint256) {
+	function declareAnimal(uint sex, uint legs, bool wings, string calldata name) external returns (uint256) {
+        if (breedersEnabled) require(breeders[msg.sender], "Not registred as breeder.");
         metadatas[_tokenIdCounter.current()] = Metadatas(sex, legs, wings, name);
-        return _tokenIdCounter.current();
+        mint(msg.sender);
+        return _tokenIdCounter.current()-1;
     }
 
 	function getAnimalCharacteristics(uint animalNumber) external view returns (string memory _name, bool _wings, uint _legs, uint _sex) {

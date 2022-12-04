@@ -9,7 +9,7 @@ contract MyContract {
 
     constructor() {
         // Init
-        evaluator = Evaluator(payable(0xB1BEAE84fDC2989fB9ef5C2ee8127617B17039E0));
+        evaluator = Evaluator(payable(0x40aDC5976f6ae451Dbf9a390d31c7ffB5366b229));
     }
 
     function allIn() public {
@@ -29,9 +29,12 @@ contract MyContract {
         bool creatureWings = evaluator.readWings(address(this));
         string memory creatureName = evaluator.readName(address(this));
         uint256 tokenId = my_erc721.declareAnimal(creatureSex, creatureLegs, creatureWings, creatureName);
-        my_erc721.mint(address(evaluator));
+        my_erc721.transferFrom(address(this), address(evaluator), tokenId);
         evaluator.ex2b_testDeclaredAnimal(tokenId);
 
+        // Ex3
+        my_erc721.toggleBreeders();
+        evaluator.ex3_testRegisterBreeder();
     }
 
     function onERC721Received(address _operator, address _from, uint256 _tokenId, bytes memory _data) external pure returns(bytes4 value) {
