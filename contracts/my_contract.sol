@@ -64,7 +64,9 @@ contract MyContract {
         evaluator2.ex7b_offerAnimalForReproduction();
 
         // Ex7c
-        
+        tokenId = my_erc721.declareAnimal(creatureSex, creatureLegs, creatureWings, creatureName);
+        my_erc721.offerForReproduction(tokenId, 0.0001 ether);
+        evaluator2.ex7c_payForReproduction(tokenId);
     }
 
     function onERC721Received(address _operator, address _from, uint256 _tokenId, bytes memory _data) external pure returns(bytes4 value) {

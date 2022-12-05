@@ -182,7 +182,26 @@
 						"type": "address"
 					}
 				],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "authorizedBreederToReproduction",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -704,7 +723,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "repoducitonPrice",
+				"name": "repoductionPrice",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -1135,11 +1154,11 @@
 			]
 		},
 		"contracts/my_ecr721.sol": {
-			"keccak256": "0x7d165964e8bb4c1d86d67c36d939fc051ae6570fe77fc822984c7a5195e8e2ba",
+			"keccak256": "0x41400c5b918050e4497fa2fae3f9bddf682bbe2303fc78a003feb40f4a4507c0",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://737386ae73696b858327b946171a14f28ef9adb0fb043c0dd4cd850c5f14b626",
-				"dweb:/ipfs/QmV9XpyTw17thqMf7vtJ8x5z9Zadnr51STdMixSLkxyNvw"
+				"bzz-raw://4d918f650a29e0010a405bc30b36472b7f5cc5d47e0181f82decfd2e7b694036",
+				"dweb:/ipfs/QmUEP3rfYNALJM1JAsq4q8cSgpNXXbGQkcJuDYp4pcHBga"
 			]
 		}
 	},

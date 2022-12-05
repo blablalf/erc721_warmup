@@ -29,7 +29,8 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
 
     // Reproduction
     mapping(uint => bool) public reproducingAvaibility;
-    mapping(uint => uint) public repoducitonPrice;
+    mapping(uint => uint) public repoductionPrice;
+    mapping(uint => address) public authorizedBreederToReproduction;
 
     // Characteristics/Metadatas
     mapping(uint => Metadatas) public metadatas;
@@ -141,10 +142,13 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
 	// Reproduction functions
 
 	function declareAnimalWithParents(uint sex, uint legs, bool wings, string calldata name, uint parent1, uint parent2) external returns (uint256) {
-        require(ownerOf(parent1) == msg.sender && ownerOf(parent2) == msg.sender, "Sender is not owner of parents");
+        require(ownerOf(parent1) == msg.sender || authorizedBreederToReproduction[parent1] == msg.sender, "Sender is not allowed to use parent1 to reproduce.");
+        require(ownerOf(parent2) == msg.sender || authorizedBreederToReproduction[parent2] == msg.sender, "Sender is not allowed to use parent1 to reproduce.");
         uint tokenId = declareAnimal(sex, legs, wings, name);
         parents[tokenId].parent1 = parent1;
         parents[tokenId].parent2 = parent2;
+        if (authorizedBreederToReproduction[parent1] == msg.sender) authorizedBreederToReproduction[parent1] = address(0);
+        if (authorizedBreederToReproduction[parent2] == msg.sender) authorizedBreederToReproduction[parent2] = address(0);
         return tokenId;
     }
 
@@ -157,19 +161,26 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
     }
 
 	function reproductionPrice(uint animalNumber) external view returns (uint256) {
-        return repoducitonPrice[animalNumber];
+        return repoductionPrice[animalNumber];
     }
 
 	function offerForReproduction(uint animalNumber, uint priceOfReproduction) external returns (uint256) {
         require(ownerOf(animalNumber) == msg.sender);
         reproducingAvaibility[animalNumber] = true;
-        repoducitonPrice[animalNumber] = priceOfReproduction;
+        repoductionPrice[animalNumber] = priceOfReproduction;
         return animalNumber;
     }
 
-	function authorizedBreederToReproduce(uint animalNumber) external returns (address) {
-        return msg.sender;
+	function authorizedBreederToReproduce(uint animalNumber) external view returns (address) {
+        return authorizedBreederToReproduction[animalNumber];
     }
 
-	function payForReproduction(uint animalNumber) external payable {}
+	function payForReproduction(uint animalNumber) external payable {
+        require(breeders[msg.sender], "Not registred as breeder.");
+        require(msg.value >= repoductionPrice[animalNumber], "Paid value is inferior to reproduction price.");
+        require(reproducingAvaibility[animalNumber], "Animal cannot reproduce.");
+        repoductionPrice[animalNumber] = 0;
+        reproducingAvaibility[animalNumber] = false;
+        authorizedBreederToReproduction[animalNumber] = msg.sender;
+    }
 }
