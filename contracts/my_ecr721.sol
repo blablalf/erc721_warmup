@@ -41,8 +41,6 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
         string name;
     }
 
-    event boboche();
-
     constructor() ERC721("blabla_721", "BLABLA") {}
 
     function safeMint(address to) public onlyOwner {
