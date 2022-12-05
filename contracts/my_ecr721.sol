@@ -11,7 +11,6 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
 
     Counters.Counter private _tokenIdCounter;
 
-
     // Breeders
     bool breedersEnabled;
     mapping(address => bool) private breeders;
@@ -21,6 +20,13 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
     mapping(uint => uint) public animalSalePrice;
     mapping(uint => bool) public isForSale;
 
+    // Parents
+    mapping(uint => Parents) public parents;
+    struct Parents {
+		uint parent1;
+        uint parent2;
+    }
+
     mapping(uint => Metadatas) public metadatas;
     struct Metadatas {
 		uint sex;
@@ -28,6 +34,8 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
         bool wings;
         string name;
     }
+
+    event boboche();
 
     constructor() ERC721("blabla_721", "BLABLA") {}
 
@@ -59,7 +67,12 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
         breeders[msg.sender] = true;
     }
 
-	function declareAnimal(uint sex, uint legs, bool wings, string calldata name) external returns (uint256) {
+    function registerSomeoneAsBreeder(address futurBreeder) external payable {
+        require(msg.value == registrationPriceVal, "Payed value not equal to registrationPrice value.");
+        breeders[futurBreeder] = true;
+    }
+
+	function declareAnimal(uint sex, uint legs, bool wings, string calldata name) public returns (uint256) {
         if (breedersEnabled) require(breeders[msg.sender], "Not registred as breeder.");
         _tokenIdCounter.increment();
         metadatas[_tokenIdCounter.current()] = Metadatas(sex, legs, wings, name);
@@ -78,6 +91,7 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
         _burn(animalNumber);
     }
 
+    // Shouldn't works with big mapping
 	function tokenOfOwnerByIndex(address owner, uint256 index) external view returns (uint256) {
         require(balanceOf(owner) > 0, "Owner do not have any token.");
         uint ownerBalance = balanceOf(owner);
@@ -122,11 +136,14 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
 	// Reproduction functions
 
 	function declareAnimalWithParents(uint sex, uint legs, bool wings, string calldata name, uint parent1, uint parent2) external returns (uint256) {
-        return 0;
+        uint tokenId = declareAnimal(sex, legs, wings, name);
+        parents[tokenId].parent1 = parent1;
+        parents[tokenId].parent2 = parent2;
+        return tokenId;
     }
 
-	function getParents(uint animalNumber) external returns (uint256, uint256) {
-        return (0, 0);
+	function getParents(uint animalNumber) external view returns (uint256, uint256) {
+        return (parents[animalNumber].parent1, parents[animalNumber].parent2); // if 0 is returned then it doesn't have parents
     }
 
 	function canReproduce(uint animalNumber) external returns (bool) {

@@ -395,7 +395,7 @@
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -608,6 +608,30 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "parents",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "parent1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "parent2",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -1054,11 +1078,11 @@
 			]
 		},
 		"contracts/my_ecr721.sol": {
-			"keccak256": "0x550719d54cb3774afeff2ddd8cde0e3b93096db247ea3fa85dc5c1e01ffdeac6",
+			"keccak256": "0x277876a4f714ceeb03209b304a93e5443f4d9e255e8b7df374fbf0ce428d697f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://dfa57a9242b4d9a9c0be85119ac63d3ab6532d5fb2777a7ffa967f4b6a99a09c",
-				"dweb:/ipfs/QmRdzjn1jDJAmWwVG4kLWkfcW9ueVvHRege4bHVHLcuZsg"
+				"bzz-raw://67ced3cbf73ec9c672a5febaee43a0ed2fb61a630f62c9516fac9262edd590ff",
+				"dweb:/ipfs/QmbftStq8EFgmL1QzwVWjFraR7Vcnd5qxkHeb13t3fXGzj"
 			]
 		}
 	},

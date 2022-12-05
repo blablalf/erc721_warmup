@@ -1,5 +1,6 @@
 pragma solidity ^0.8.9;
 import "./Evaluator.sol";
+import "./Evaluator2.sol";
 import "./my_ecr721.sol";
 
 contract MyContract {
@@ -21,7 +22,6 @@ contract MyContract {
         evaluator.ex2a_getAnimalToCreateAttributes();
 
         // Ex2b
-        //uint256 creatureRank = evaluator.assignedRank(address(this));
         uint256 creatureSex = evaluator.readSex(address(this));
         uint256 creatureLegs = evaluator.readLegs(address(this));
         bool creatureWings = evaluator.readWings(address(this));
@@ -48,6 +48,15 @@ contract MyContract {
         tokenId = my_erc721.declareAnimal(creatureSex, creatureLegs, creatureWings, creatureName);
         my_erc721.offerForSale(tokenId, 0.0001 ether);
         evaluator.ex6b_auctionAnimal_buy(tokenId);
+
+        // Ex7a
+        Evaluator2 evaluator2 = Evaluator2(payable(0x0E4F5184E6f87b5F959aeE5a09a2797e8B1b20E5));
+        evaluator2.ex2a_getAnimalToCreateAttributes();
+        evaluator2.submitExercice(my_erc721);
+        my_erc721.registerSomeoneAsBreeder(address(evaluator2));
+        uint256 parent1Id = my_erc721.declareAnimal(creatureSex, creatureLegs, creatureWings, creatureName);
+        uint256 parent2Id = my_erc721.declareAnimal(creatureSex+1, creatureLegs, creatureWings, creatureName);
+        evaluator2.ex7a_breedAnimalWithParents(parent1Id, parent2Id);
     }
 
     function onERC721Received(address _operator, address _from, uint256 _tokenId, bytes memory _data) external pure returns(bytes4 value) {
