@@ -105,6 +105,12 @@
 				"type": "event"
 			},
 			{
+				"anonymous": false,
+				"inputs": [],
+				"name": "boboche",
+				"type": "event"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -227,7 +233,7 @@
 						"type": "bool"
 					}
 				],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -658,6 +664,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "futurBreeder",
+						"type": "address"
+					}
+				],
+				"name": "registerSomeoneAsBreeder",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "registrationPrice",
 				"outputs": [
@@ -675,6 +694,44 @@
 				"name": "renounceOwnership",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "repoducitonPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "reproducingAvaibility",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -1078,11 +1135,11 @@
 			]
 		},
 		"contracts/my_ecr721.sol": {
-			"keccak256": "0x277876a4f714ceeb03209b304a93e5443f4d9e255e8b7df374fbf0ce428d697f",
+			"keccak256": "0x7d165964e8bb4c1d86d67c36d939fc051ae6570fe77fc822984c7a5195e8e2ba",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://67ced3cbf73ec9c672a5febaee43a0ed2fb61a630f62c9516fac9262edd590ff",
-				"dweb:/ipfs/QmbftStq8EFgmL1QzwVWjFraR7Vcnd5qxkHeb13t3fXGzj"
+				"bzz-raw://737386ae73696b858327b946171a14f28ef9adb0fb043c0dd4cd850c5f14b626",
+				"dweb:/ipfs/QmV9XpyTw17thqMf7vtJ8x5z9Zadnr51STdMixSLkxyNvw"
 			]
 		}
 	},

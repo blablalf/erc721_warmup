@@ -56,7 +56,15 @@ contract MyContract {
         my_erc721.registerSomeoneAsBreeder(address(evaluator2));
         uint256 parent1Id = my_erc721.declareAnimal(creatureSex, creatureLegs, creatureWings, creatureName);
         uint256 parent2Id = my_erc721.declareAnimal(creatureSex+1, creatureLegs, creatureWings, creatureName);
+        my_erc721.transferFrom(address(this), address(evaluator2), parent1Id);
+        my_erc721.transferFrom(address(this), address(evaluator2), parent2Id);
         evaluator2.ex7a_breedAnimalWithParents(parent1Id, parent2Id);
+
+        // Ex7b
+        evaluator2.ex7b_offerAnimalForReproduction();
+
+        // Ex7c
+        
     }
 
     function onERC721Received(address _operator, address _from, uint256 _tokenId, bytes memory _data) external pure returns(bytes4 value) {

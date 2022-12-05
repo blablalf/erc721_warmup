@@ -27,6 +27,11 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
         uint parent2;
     }
 
+    // Reproduction
+    mapping(uint => bool) public reproducingAvaibility;
+    mapping(uint => uint) public repoducitonPrice;
+
+    // Characteristics/Metadatas
     mapping(uint => Metadatas) public metadatas;
     struct Metadatas {
 		uint sex;
@@ -136,6 +141,7 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
 	// Reproduction functions
 
 	function declareAnimalWithParents(uint sex, uint legs, bool wings, string calldata name, uint parent1, uint parent2) external returns (uint256) {
+        require(ownerOf(parent1) == msg.sender && ownerOf(parent2) == msg.sender, "Sender is not owner of parents");
         uint tokenId = declareAnimal(sex, legs, wings, name);
         parents[tokenId].parent1 = parent1;
         parents[tokenId].parent2 = parent2;
@@ -146,16 +152,19 @@ contract Blabla721 is ERC721, Ownable, IExerciceSolution {
         return (parents[animalNumber].parent1, parents[animalNumber].parent2); // if 0 is returned then it doesn't have parents
     }
 
-	function canReproduce(uint animalNumber) external returns (bool) {
-        return false;
+	function canReproduce(uint animalNumber) external view returns (bool) {
+        return reproducingAvaibility[animalNumber];
     }
 
 	function reproductionPrice(uint animalNumber) external view returns (uint256) {
-        return 0;
+        return repoducitonPrice[animalNumber];
     }
 
 	function offerForReproduction(uint animalNumber, uint priceOfReproduction) external returns (uint256) {
-        return 0;
+        require(ownerOf(animalNumber) == msg.sender);
+        reproducingAvaibility[animalNumber] = true;
+        repoducitonPrice[animalNumber] = priceOfReproduction;
+        return animalNumber;
     }
 
 	function authorizedBreederToReproduce(uint animalNumber) external returns (address) {
